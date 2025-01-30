@@ -1,11 +1,13 @@
 import LinkedList from "./linkedList.js"
+import assert from "node:assert/strict"
 
 function testAppend() {
   const list = new LinkedList()
+  assert.equal(list.toString(), "List is empty")
   list.append("dog")
   list.append("cat")
   list.append("parrot")
-  console.log(list.toString()) // dog -> cat -> parrot
+  assert.equal(list.toString(), "dog -> cat -> parrot")
 }
 
 function testPrepend() {
@@ -13,18 +15,18 @@ function testPrepend() {
   list.prepend("turtle")
   list.prepend("snake")
   list.prepend("hamster")
-  console.log(list.toString()) // hamster -> snake -> turtle
+  assert.equal(list.toString(), "hamster -> snake -> turtle")
 }
 
 function testInsert() {
   const list = new LinkedList()
   list.insertAt("eagle", 0)
-  console.log(list.toString()) // eagle
+  assert.equal(list.toString(), "eagle")
   list.append("dog")
   list.append("cat")
   list.append("parrot")
   list.insertAt("fish", 2)
-  console.log(list.toString()) // eagle -> dog -> fish -> cat -> parrot
+  assert.equal(list.toString(), "eagle -> dog -> fish -> cat -> parrot")
 }
 
 function testRemove() {
@@ -34,36 +36,36 @@ function testRemove() {
   list.append("parrot")
   list.append("eagle")
   list.removeAt(0)
-  console.log(list.toString()) // cat -> parrot -> eagle
+  assert.equal(list.toString(), "cat -> parrot -> eagle")
   list.removeAt(2)
-  console.log(list.toString()) // cat -> parrot
+  assert.equal(list.toString(), "cat -> parrot")
 }
 
 function testSize() {
   const list = new LinkedList()
-  console.log(list.size()) // 0
+  assert.equal(list.size(), 0)
   list.append("dog")
   list.append("cat")
   list.append("parrot")
-  console.log(list.size()) // 3
+  assert.equal(list.size(), 3)
 }
 
 function testHead() {
   const list = new LinkedList()
-  console.log(list.head()) // null
+  assert.equal(list.head(), null)
   list.append("dog")
   list.append("cat")
   list.append("parrot")
-  console.log(list.head()) // Node { value: 'dog', nextNode: Node { value: 'cat', nextNode: Node { value: 'parrot', nextNode: null }}}
+  assert.equal(list.head().value, "dog")
 }
 
 function testTail() {
   const list = new LinkedList()
-  console.log(list.tail()) // null
+  assert.equal(list.tail(), null)
   list.append("dog")
   list.append("cat")
   list.append("parrot")
-  console.log(list.tail()) // Node { value: 'parrot', nextNode: null }
+  assert.equal(list.tail().value, "parrot")
 }
 
 function testAt() {
@@ -71,19 +73,19 @@ function testAt() {
   list.append("dog")
   list.append("cat")
   list.append("parrot")
-  console.log(list.at(0)) // Node { value: 'dog', nextNode: Node { value: 'cat', nextNode: Node { value: 'parrot', nextNode: null }}}
-  console.log(list.at(1)) // Node { value: 'cat', nextNode: Node { value: 'parrot', nextNode: null }}
+  assert.equal(list.at(0).value, "dog")
+  assert.equal(list.at(1).value, "cat")
 }
 
 function testPop() {
   const list = new LinkedList()
   list.pop()
-  console.log(list.toString())
+  assert.equal(list.toString(), "List is empty")
   list.append("dog")
   list.append("cat")
   list.append("parrot")
   list.pop()
-  console.log(list.toString()) // dog -> cat
+  assert.equal(list.toString(), "dog -> cat")
 }
 
 function testContains() {
@@ -91,8 +93,8 @@ function testContains() {
   list.append("dog")
   list.append("cat")
   list.append("parrot")
-  console.log(list.contains("cat")) // true
-  console.log(list.contains("fish")) // false
+  assert.equal(list.contains("cat"), true)
+  assert.equal(list.contains("fish"), false)
 }
 
 function testFind() {
@@ -100,8 +102,8 @@ function testFind() {
   list.append("dog")
   list.append("cat")
   list.append("parrot")
-  console.log(list.find("cat")) // 1
-  console.log(list.find("fish")) // false
+  assert.equal(list.find("cat"), 1)
+  assert.equal(list.find("fish"), null)
 }
 
 testAppend()
